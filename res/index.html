@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffaf0;
+            color: #5a3c2e;
+        }
+
+        /* Fixed Navbar */
+        nav {
+            background-color: #d4a373;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f9dcc4;
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        header {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #f5e1d2;
+        }
+
+        header h1 {
+            font-size: 48px;
+            color: #a0522d;
+        }
+
+        header p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 50px 20px;
+        }
+
+        .menu-item {
+            text-align: center;
+            border: 1px solid #d4a373;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9dcc4;
+            transition: transform 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .menu-item h3 {
+            margin: 10px 0;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 50px 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s, filter 0.3s;
+        }
+
+        .gallery img:hover {
+            filter: brightness(1.2);
+            transform: scale(1.05);
+        }
+
+        /* Contact Us Form */
+        .contact-form {
+            padding: 50px 20px;
+            background-color: #f5e1d2;
+            text-align: center;
+        }
+
+        .contact-form h2 {
+            margin-bottom: 20px;
+            color: #a0522d;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #d4a373;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #d4a373;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #a0522d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #d4a373;
+            padding: 10px 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            nav ul {
+                justify-content: center;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+
+            header p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <header id="home">
+        <h1>Welcome to Our Bakery</h1>
+        <p>Freshly baked goods made with love</p>
+    </header>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2 style="text-align: center; padding-top: 20px;">Our Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/250x150" alt="Bread">
+                <h3>Sourdough Bread</h3>
+                <p>Freshly baked with organic flour.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/250x150" alt="Cupcake">
+                <h3>Chocolate Cupcake</h3>
+                <p>Rich and creamy chocolate frosting.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/250x150" alt="Croissant">
+                <h3>Butter Croissant</h3>
+                <p>Flaky and buttery, straight from the oven.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/250x150" alt="Donut">
+                <h3>Glazed Donut</h3>
+                <p>Sweet and soft with a classic glaze.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 style="text-align: center; padding-top: 20px;">Gallery</h2>
+        <div class="gallery">
+            <img src="https://via.placeholder.com/250x150" alt="Bakery item">
+            <img src="https://via.placeholder.com/250x150" alt="Bakery item">
+            <img src="https://via.placeholder.com/250x150" alt="Bakery item">
+            <img src="https://via.placeholder.com/250x150" alt="Bakery item">
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact">
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Bakery. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+      background-image: url("bg-line.jpg");
+      background-size: cover;
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      font-size: 5vmin;
+      margin-top: 2vmin;
+      font-weight: bolder;
+    }
+    form {
+      border: 2px solid black;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      width: 100vmin;
+      background-color: silver;
+      padding: 2vmin;
+      border-radius: 10px;
+    }
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    .container form {
+      z-index: 1;
+    }
+    form label {
+      margin: 0.5vmin;
+    }
+    form label p {
+      font-size: 3vmin;
+    }
+    input {
+      width: 80vmin;
+      height: 5vmin;
+      margin-bottom: 1vmin;
+    }
+    #btn {
+      display: block;
+      margin: 2vmin auto;
+      height: 5vmin;
+      width: 80vmin;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .list {
+      color: white;
+      background : black;
+      border: 2px solid white;
+      display: BLOCK;
+      justify-content: center;
+      border-radius: 10px;
+      padding: 4px;
+      margin: 2vmin 0;
+    }
+    .list ul {
+      list-style: none;
+    }
+    .hide {
+      display: none;
+    }
+    .list li.green {
+      color: green;
+    }
+    .list li.red {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form action="">
+      <h1>REGISTRATION FORM</h1>
+      <label for="first-name">
+        <p>Enter First Name</p>
+        <input type="text" id="first-name" placeholder="Enter First Name">
+      </label>
+      <label for="last-name">
+        <p>Enter Last Name</p>
+        <input type="text" id="last-name" placeholder="Enter Last Name">
+      </label>
+      <label for="email">
+        <p>Enter Email</p>
+        <input type="email" id="email" placeholder="Enter Email">
+      </label>
+      <label for="password">
+        <p>Enter Password</p>
+        <input type="password" id="password" placeholder="Enter Password">
+        <div class="list hide">
+          <ul>
+            <li class="special">Password must start with a special character</li>
+            <li class="upper">Password must contain an uppercase letter</li>
+            <li class="lower">Password must contain a lowercase letter</li>
+            <li class="length">Password must be longer than 6 characters</li>
+          </ul>
+        </div>
+      </label>
+      <label for="confirm-password">
+        <p>Confirm Password</p>
+        <input type="password" id="confirm-password" placeholder="Confirm Password">
+      </label>
+      <button id="btn">Submit</button>
+    </form>
+  </div>
+  
+  <script>
+    const firstName = document.querySelector('#first-name');
+    const lastName = document.querySelector('#last-name');
+    const email = document.querySelector('#email');
+    const password = document.querySelector('#password');
+    const confirmPassword = document.querySelector('#confirm-password');
+    const btn = document.querySelector('#btn');
+    const list = document.querySelector('.list');
+    const special = document.querySelector('.special');
+    const upper = document.querySelector('.upper');
+    const lower = document.querySelector('.lower');
+    const length = document.querySelector('.length');
+    
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      checkPassword();
+      checkConfirmation();
+    });
+
+    function checkPassword() {
+      const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+      const uppercasePattern = /[A-Z]/;
+      const lowercasePattern = /[a-z]/;
+
+
+      list.classList.remove('hide');
+
+    
+      special.classList.toggle('green', specialCharPattern.test(password.value));
+      special.classList.toggle('red', !specialCharPattern.test(password.value));
+      
+      upper.classList.toggle('green', uppercasePattern.test(password.value));
+      upper.classList.toggle('red', !uppercasePattern.test(password.value));
+      
+      lower.classList.toggle('green', lowercasePattern.test(password.value));
+      lower.classList.toggle('red', !lowercasePattern.test(password.value));
+      
+      length.classList.toggle('green', password.value.length > 6);
+      length.classList.toggle('red', password.value.length <= 6);
+    }
+
+    function checkConfirmation() {
+      if (password.value !== confirmPassword.value) {
+        alert("Passwords do not match!");
+      } else {
+        alert("Form submitted successfully!");
+      }
+    }
+
+    password.addEventListener('input', checkPassword);
+
+
+    password.addEventListener('focus', () => list.classList.remove('hide'));
+    password.addEventListener('blur', () => list.classList.add('hide'));
+  </script>
+</body>
+</html>

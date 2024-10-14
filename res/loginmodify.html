@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+  integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
+  <style>
+    
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins" ,sans-serif;
+      }
+      body{
+        background-color: black;
+      }
+      
+      .regform{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 100vh;
+        backdrop-filter: blur(50px);
+        color : white;
+        /* color : #FF69B4; */
+        padding: 20px 35px 20px;
+      }
+      .regform h1{
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .regform .input-box{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        /* background: slateblue; */
+      }
+      .input-box .input-field{
+        position: relative;
+        width : 50%;
+        margin: 13px 0px;
+      }
+      .input-box .input-field input{
+        width: 100%;
+        height: 100%;
+        background : transparent;
+        border: 2px solid rgba(255 , 255 , 255 , .2);
+        outline: none;
+        font-size: 16px;
+        color : white;
+        border-radius: 6px;
+        padding: 15px 25px 15px 50px;
+      }
+     .input-box .input-field input::placeholder{
+      color : white;
+      color : #f70776;
+      text-shadow: 1px 1.2px 1px #f70776;
+      font-weight: bolder;
+     }
+     .input-box .input-field i{
+       position: absolute;
+       left : 15px;
+       top : 50%;
+       transform: translateY(-50%);
+       font-size: 20px;
+       color: white;
+     }
+      
+     #btn{
+      width : 100%;
+      height : 45px;
+     }
+
+     .regform label input{
+      accent-color: white;
+      margin-right: 5px;
+     }
+     .regform label{
+      display: inline-block;
+      font-size: 14.4px;
+      margin : 10px 0 23px;
+     }
+     .regform #btn{
+       width : 100%;
+       height : 45px;
+      background: #fff;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+      box-shadow: 6px;
+      cursor: pointer;
+      color : black;
+      font-weight: bolder;
+      font-size: 2rem;
+
+     }
+     #btn:hover{
+      background-color: #f70776;
+      color : black;
+      box-shadow: 10px 4px 4px #f70776;
+     }
+     #textreg{
+      overflow: hidden;
+      font-size : 8vmin;
+      white-space: nowrap;
+      /* color : #c3195d; */
+      text-shadow: 4px 4px 4px white;
+      /* animation: typing 7s steps(20) infinite normal; */
+     }
+     @keyframes typing{
+      from{
+        width: 0;
+        color: white;
+      }
+      to{
+        width: 100%;
+        color : black;
+      }
+     }
+
+     .head2 a:active{
+        text-decoration: none;
+        color : white;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+       .imgchoco{
+        background-image: url("images/downchoco.jpg");
+        background-size: cover;
+        height : 200px;
+        width : 1200px;
+       }
+      
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo"></div>
+    <div class="navoptions">
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="login.html">LOGIN</a></li>
+        <li><select id="option-nav">
+          <option >BIRTHDAY CAKE</option>
+          <option>PARTIES CAKE</option>
+          <option>WEDDING CAKE</option>
+          <option>WEDDING CAKE</option>
+        </select></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="products.html">PRODUCTS</a></li>
+
+      </ul>
+    </div>
+</div>
+</div>
+  <div class="regform">
+    <form action="https://api.web3forms.com/submit" method="POST"">
+      <input type="hidden" name="access_key" value="bb630436-103c-4bfb-a786-778f25d6b03d">
+      <h1 id="textreg">REGISTRATION</h1>
+      <div class="input-box">
+        <div class="input-field">
+          <input type="text" placeholder="Full Name" name="username" required>
+         <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-field">
+          <input type="text" placeholder="Username" name="fullname" required>
+          <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-field">
+          <input type="email" placeholder="Email" name="email" required>
+          <i class="bx bxs-envelope"></i>
+        </div>
+        <div class="input-field">
+          <input type="number" placeholder="Phone Number" name="phone" required>
+          <i class="bx bxs-phone"></i>
+        </div>
+
+      </div>
+
+      <div class="input-box">
+
+        <div class="input-field">
+          <input type="password" placeholder="Password" required>
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+
+        <div class="input-field">
+          <input type="password" placeholder="Confirm Password" required>
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+
+        </div>
+        <label><input type="checkbox">I hereby declare that the above information provided is true and correct</label>
+        <button type="Submit" id="btn"> ORDER NOW</button>
+        <div class="imgchoco"></div>
+      </div>
+    </form> 
+</body>
+</html>

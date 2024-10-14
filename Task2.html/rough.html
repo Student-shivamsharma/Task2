@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration and Landing Page</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        /* Carousel Styles */
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+            height: 300px;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-buttons button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        /* Rating Section */
+        .rating {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .rating span {
+            font-size: 2em;
+            cursor: pointer;
+            color: #ddd;
+        }
+
+        .rating span.selected,
+        .rating span:hover,
+        .rating span:hover ~ span {
+            color: #f39c12;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <label>
+                <input type="checkbox" id="showPassword"> Show Password
+            </label>
+            <div id="passwordStrength"></div>
+            <div id="error" class="error"></div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>Landing Page</h2>
+        <!-- Carousel Section -->
+        <div class="carousel" id="carousel">
+            <img src="https://via.placeholder.com/600x300?text=Slide+1" alt="Slide 1">
+            <img src="https://via.placeholder.com/600x300?text=Slide+2" alt="Slide 2">
+            <img src="https://via.placeholder.com/600x300?text=Slide+3" alt="Slide 3">
+        </div>
+        <div class="carousel-buttons">
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <!-- Rating Section -->
+        <div class="rating">
+            <span data-value="5">&#9733;</span>
+            <span data-value="4">&#9733;</span>
+            <span data-value="3">&#9733;</span>
+            <span data-value="2">&#9733;</span>
+            <span data-value="1">&#9733;</span>
+        </div>
+    </div>
+
+    <script>
+        // Registration Form Validation
+        const form = document.getElementById('registrationForm');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const error = document.getElementById('error');
+        const showPassword = document.getElementById('showPassword');
+        const passwordStrength = document.getElementById('passwordStrength');
+
+        showPassword.addEventListener('change', () => {
+            const type = showPassword.checked ? 'text' : 'password';
+            password.type = type;
+            confirmPassword.type = type;
+        });
+
+        password.addEventListener('input', () => {
+            const value = password.value;
+            let strength = 'Weak';
+            if (value.length > 8 && /[A-Z]/.test(value) && /\d/.test(value) && /[\W_]/.test(value)) {
+                strength = 'Strong';
+            } else if (value.length > 5) {
+                strength = 'Medium';
+            }
+            passwordStrength.textContent = `Password Strength: ${strength}`;
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (password.value !== confirmPassword.value) {
+                error.textContent = "Passwords do not match";
+            } else {
+                error.textContent = "";
+                alert("Registration successful!");
+                form.reset();
+            }
+        });
+
+        // Carousel Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel img');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.transform = `translateX(${100 * (i - index)}%)`;
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 3000);
+
+        // Star Rating Functionality
+        const stars = document.querySelectorAll('.rating span');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                stars.forEach(s => s.classList.remove('selected'));
+                star.classList.add('selected');
+                star.previousElementSibling?.classList.add('selected');
+            });
+            star.addEventListener('mouseover', () => {
+                star.classList.add('hover');
+            });
+            star.addEventListener('mouseout', () => {
+                star.classList.remove('hover');
+            });
+        });
+
+        // Initialize the first slide
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

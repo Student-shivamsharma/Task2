@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* background-color: red; */
+      height: 100vh;
+      width: 100%;
+      background-image: url("bg-line.jpg");
+      background-size: cover;
+      position: relative;
+    }
+    h1{
+      text-align: center;
+      font-size: 3vmin;
+      margin-top: 2vmin;
+      font-weight: bolder;
+    }
+    form{
+      border: 2px solid black;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      width : 100vmin;
+    }
+    .container::before{
+  content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+  width: 100%;
+  height: 100%;
+  /* opacity: 0.7; */
+  background-color: rgba(0,0,0,0.7);
+}
+.container form {
+  z-index: 1;
+}
+    form label{
+      margin: 2vmin;
+    }
+    form label p{
+      font-size: 5vmin;
+    }
+    input{
+     width: 80vmin;
+      height : 5vmin;
+    }
+    #btn{
+      display: block;
+      margin: 2vmin;
+      height : 5vmin;
+      width: 80vmin;
+      margin: auto;
+      margin-bottom: 2vmin;
+    }
+    p{
+      color : white;
+    }
+    .list{
+      color : white;
+      border: 2px solid white;
+      display: inline-block;
+      justify-content: center;
+      border-radius: 10px;
+      padding: 4px;
+    }
+    .list ul{
+      list-style: none;
+    }
+    .hide{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <form action="" >
+      <h1>REGISTRATION FORM</h1>
+    <label for="first-name">
+      <p>Enter First Name </p><input type="text" id="first-name" placeholder="Enter First Name">
+    </label>
+    <label for="last-name">
+      <p>Enter Last Name</p><input type="text" id="last-name" placeholder="Enter Last Name">
+    </label>
+      <label for="email">
+       <p> Enter Email</p><input type="text" id="email" placeholder="Enter Email">
+    </label>
+      <label for="password">
+        <p>Enter Password</p><input type="text" id="password"  placeholder="Enter Password">
+        <div class="list hide">
+          <ul >
+            <li class="first">Password must Start with Special letter</li>
+            <li class="second">Password Contain Upper</li>
+            <li class="third">Password Contain small</li>
+            <li class="fourth">Password Contain greater than 6</li>
+          </ul>
+        </div>
+    </label>
+      <label for="confirm-password">
+        <p>Confirm Password</p><input type="text" id="confirm-password" placeholder="Enter Password">
+    </label>
+    <label>
+      <button id="btn">Submit</button>
+    </label>
+    </form>
+  </div>
+  
+</body>
+<script>
+  let firstName = document.querySelector('#first-name')
+  let lastName = document.querySelector('#last-name')
+  let Email = document.querySelector('#email')
+  let Password = document.querySelector('#password')
+  let confirmPassword = document.querySelector('#confirm-password')
+  let btn = document.querySelector('#btn')
+  let List = document.querySelector('.list')
+  let ul = document.querySelector('ul')
+  let first = document.querySelector('.first')
+  let second = document.querySelector('.second')
+  let third = document.querySelector('.third')
+  let fourth = document.querySelector('.fourth')
+  
+  console.log(firstName.value);
+  btn.addEventListener('click' ,(e) => {
+    e.preventDefault()
+    // console.log("click");
+    check()
+  })
+
+  function check(){
+    const uppercasePattern = /[A-Z]/;
+    const lowercasePattern = /[a-z]/;
+    const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+  
+  console.log(Password.value);
+  console.log(Password.value.length);
+  if(Password.value.length > 6 && uppercasePattern.test(Password.value) && lowercasePattern.test(Password.value) && specialCharPattern.test(Password.value)){
+    console.log("strong");
+  }
+  
+  else{
+    alert("password must contain more than 6 letters")
+  }
+  confirmCheck()
+ 
+  }
+  function confirmCheck(){
+    if(Password.value == confirmPassword.value){
+      alert("submit")
+      
+    }
+    else{
+      alert("wrong");
+    }
+  }
+ let count = 0;
+ Password.addEventListener('click' , () => {
+     count++;
+     click()
+ })
+ function click(){
+ if(count % 2 == 0){
+  List.classList.add('hide');
+ }
+  else{
+    List.classList.remove('hide');
+  }
+  color()
+}
+function color(){
+  const uppercasePattern = /[A-Z]/;
+    const lowercasePattern = /[a-z]/;
+    const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+  
+Password.addEventListener('input' , () => {
+  console.log(Password.value);
+
+   if(specialCharPattern.test(Password.value)){
+    first.style.color = "green"
+  }
+  else if(uppercasePattern.test(Password.value)){
+    second.style.color = "green"
+  }
+  else if(lowercasePattern.test(Password.value)){
+    third.style.color = "green"
+  }
+  else if(Password.value.length > 6){
+    fourth.style.color = "green"
+  }
+  else{
+      ul.style.color = "red";
+  }
+  //  if(specialCharPattern.test(Password.value)){
+  //   ul.children[0].style.color = "green"
+  // }
+  // else if(uppercasePattern.test(Password.value)){
+  //   ul.children[1].style.color = "green"
+  // }
+  // else if(lowercasePattern.test(Password.value)){
+  //   ul.children[2].style.color = "green"
+  // }
+  // else if(Password.value.length > 6){
+  //   ul.children[3].style.color = "green"
+  // }
+  // else{
+  //     ul.style.color = "red";
+  // }
+  
+})
+}
+
+
+</script>
+</html>
+
